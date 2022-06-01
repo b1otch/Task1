@@ -177,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
         Button button = (Button) view;
         if (String.valueOf(button.getText()) == "") {
             button.setText(selectedAnswer);
+            button.setTag(selectedAnswer);
             for (int i = 0; i < gridLayout.getChildCount(); i++) {
                 Button child = (Button) gridLayout.getChildAt(i);
                 if (String.valueOf((child.getText())) == selectedAnswer) {
@@ -187,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
         else {
             selectedAnswer = String.valueOf(button.getText());
             button.setText("");
+            button.setTag("");
             for (int i = 0; i < gridLayout.getChildCount(); i++) {
                 Button child = (Button) gridLayout.getChildAt(i);
                 if (String.valueOf((child.getTag())) == selectedAnswer) {
@@ -194,6 +196,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             selectedAnswer = "";
+        }
+        for (int i = 0; i < gridLayout1.getChildCount(); i++) {
+            Button child1 = (Button) gridLayout1.getChildAt(i);
+            if (child1.getTag() != button.getTag()) {
+                child1.setClickable(false);
+            }
+            Button child2 = (Button) gridLayout3.getChildAt(i);
+            if (child2.getTag() != button.getTag()) {
+                child2.setClickable(false);
+            }
         }
     }
     public void submitAnswer(View view) {
@@ -206,12 +218,10 @@ public class MainActivity extends AppCompatActivity {
                 Button child3 = (Button) gridLayout3.getChildAt(i);
                 TextView child5 = (TextView) gridLayout5.getChildAt(i);
 
-                double a = Double.parseDouble(String.valueOf(child1.getText()));
-                Log.i("a", String.valueOf(a));
-                double b = Double.parseDouble(String.valueOf(child3.getText()));
-                Log.i("a", String.valueOf(b));
+                Double a = Double.parseDouble(String.valueOf(child1.getText()));
+                Double b = Double.parseDouble(String.valueOf(child3.getText()));
                 String operation = String.valueOf(child2.getText());
-                double ans = Double.parseDouble(String.valueOf(child5.getText()));
+                Double ans = Double.parseDouble(String.valueOf(child5.getText()));
 
                 if (operation == "+") {
                     if (a+b != ans) {
@@ -235,9 +245,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 if (operation == "/") {
-                    String tempAns = String.valueOf(decimalFormat.format(a/b));
-                    String tempFinalAns = String.valueOf(decimalFormat.format(ans));
-                    if (tempAns.compareTo(tempFinalAns) != 0) {
+                    //String tempAns = String.valueOf(decimalFormat.format(a/b));
+                    //String tempFinalAns = String.valueOf(decimalFormat.format(ans));
+                    double formattedAns = a/b;
+
+                    if ((double) ans != (double) formattedAns) {
                         wrongAnswerCount += 1;
                         Log.i("ans", String.valueOf(decimalFormat.format(a/b)));
                         Log.i("ans", String.valueOf(decimalFormat.format(ans)));
