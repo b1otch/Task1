@@ -2,10 +2,16 @@ package com.example.task1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.gridlayout.widget.GridLayout;
 
 import android.widget.Button;
@@ -30,8 +36,10 @@ public class MainActivity extends AppCompatActivity {
     GridLayout gridLayout, gridLayout5, gridLayout3, gridLayout4, gridLayout1;
     String[] operations = {"+", "-", "x", "/"};
     String selectedAnswer;
+    SharedPreferences sharedPreferences;
     DecimalFormat decimalFormat;
-    int livesCount = 3, score = 0;
+    boolean isDarkMode;
+    int livesCount = 3, score = 0, highscore;
 
     public void createPuzzle() {
 
@@ -98,6 +106,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        isDarkMode = intent.getBooleanExtra("isDarkMode", false);
+
+        sharedPreferences = this.getSharedPreferences("com.example.task1", MODE_PRIVATE);
+
+
+        if (isDarkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
 
         decimalFormat = new DecimalFormat("#.00");
 
@@ -178,65 +199,82 @@ public class MainActivity extends AppCompatActivity {
     public void submitAnswer(View view) {
         int wrongAnswerCount = 0;
 
-        for (int i = 0; i < 5; i++) {
-            Button child1 = (Button) gridLayout1.getChildAt(i);
-            TextView child2 = (TextView) gridLayout2.getChildAt(i);
-            Button child3 = (Button) gridLayout3.getChildAt(i);
-            TextView child5 = (TextView) gridLayout5.getChildAt(i);
+        try {
+            for (int i = 0; i < 5; i++) {
+                Button child1 = (Button) gridLayout1.getChildAt(i);
+                TextView child2 = (TextView) gridLayout2.getChildAt(i);
+                Button child3 = (Button) gridLayout3.getChildAt(i);
+                TextView child5 = (TextView) gridLayout5.getChildAt(i);
 
-            double a = Double.parseDouble(String.valueOf(child1.getText()));
-            Log.i("a", String.valueOf(a));
-            double b = Double.parseDouble(String.valueOf(child3.getText()));
-            Log.i("a", String.valueOf(b));
-            String operation = String.valueOf(child2.getText());
-            double ans = Double.parseDouble(String.valueOf(child5.getText()));
+                double a = Double.parseDouble(String.valueOf(child1.getText()));
+                Log.i("a", String.valueOf(a));
+                double b = Double.parseDouble(String.valueOf(child3.getText()));
+                Log.i("a", String.valueOf(b));
+                String operation = String.valueOf(child2.getText());
+                double ans = Double.parseDouble(String.valueOf(child5.getText()));
 
-            if (operation == "+") {
-                if (a+b != ans) {
-                    wrongAnswerCount += 1;
-                    Log.i("ans", String.valueOf(a+b));
-                    Log.i("ans", String.valueOf(ans));
+                if (operation == "+") {
+                    if (a+b != ans) {
+                        wrongAnswerCount += 1;
+                        Log.i("ans", String.valueOf(a+b));
+                        Log.i("ans", String.valueOf(ans));
+                    }
+                }
+                if (operation == "-") {
+                    if (a-b != ans) {
+                        wrongAnswerCount += 1;
+                        Log.i("ans", String.valueOf(a-b));
+                        Log.i("ans", String.valueOf(ans));
+                    }
+                }
+                if (operation == "x") {
+                    if (a*b != ans) {
+                        wrongAnswerCount += 1;
+                        Log.i("ans", String.valueOf(a*b));
+                        Log.i("ans", String.valueOf(ans));
+                    }
+                }
+                if (operation == "/") {
+                    String tempAns = String.valueOf(decimalFormat.format(a/b));
+                    String tempFinalAns = String.valueOf(decimalFormat.format(ans));
+                    if (tempAns.compareTo(tempFinalAns) != 0) {
+                        wrongAnswerCount += 1;
+                        Log.i("ans", String.valueOf(decimalFormat.format(a/b)));
+                        Log.i("ans", String.valueOf(decimalFormat.format(ans)));
+                    }
                 }
             }
-            if (operation == "-") {
-                if (a-b != ans) {
-                    wrongAnswerCount += 1;
-                    Log.i("ans", String.valueOf(a-b));
-                    Log.i("ans", String.valueOf(ans));
+            if (wrongAnswerCount == 0) {
+                Log.i("Right", "correct");
+                score += 1;
+                Toast.makeText(getApplicationContext(), "Your score is " + String.valueOf(score), Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Log.i("Right", "wrong");
+                livesCount -= 1;
+                Toast.makeText(getApplicationContext(), "You have lost a life " + String.valueOf(livesCount) + " lives remaining", Toast.LENGTH_SHORT).show();
+            }
+            if (livesCount == 0){
+                TextView textView = findViewById(R.id.textView7);
+                textView.setVisibility(View.VISIBLE);
+                highscore = sharedPreferences.getInt("highscore", 0);
+                if (highscore < score) {
+                    sharedPreferences.edit().putInt("highscore", score).apply();
                 }
             }
-            if (operation == "x") {
-                if (a*b != ans) {
-                    wrongAnswerCount += 1;
-                    Log.i("ans", String.valueOf(a*b));
-                    Log.i("ans", String.valueOf(ans));
-                }
+            else {
+                createPuzzle();
             }
-            if (operation == "/") {
-                if (String.valueOf(decimalFormat.format(a/b)) != String.valueOf(decimalFormat.format(ans))) {
-                    wrongAnswerCount += 1;
-                    Log.i("ans", String.valueOf(decimalFormat.format(a/b)));
-                    Log.i("ans", String.valueOf(decimalFormat.format(ans)));
-                }
+        }
+        catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Please enter all the values", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void takeToHomepage (View view) {
+        Intent intent = new Intent(getApplicationContext(), HomePage.class);
+        intent.putExtra("highscore", highscore);
+        intent.putExtra("isDarkMode", isDarkMode);
 
-            }
-        }
-        if (wrongAnswerCount == 0) {
-            Log.i("Right", "correct");
-            score += 1;
-            Toast.makeText(getApplicationContext(), "Your score is " + String.valueOf(score), Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Log.i("Right", "wrong");
-            livesCount -= 1;
-            Toast.makeText(getApplicationContext(), "You have lost a life " + String.valueOf(livesCount) + " lives remaining", Toast.LENGTH_SHORT).show();
-        }
-        if (livesCount == 0){
-            TextView textView = findViewById(R.id.textView7);
-            textView.setVisibility(View.VISIBLE);
-        }
-        else {
-            createPuzzle();
-        }
+        startActivity(intent);
     }
 }
