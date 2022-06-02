@@ -56,15 +56,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/backgroundColor"
-        android:text="enter game"
-        android:textSize="20sp"
         android:onClick="toGame"
+        android:text="enter game"
         android:textColor="@color/textColour"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.756" />
+        app:layout_constraintVertical_bias="0.642" />
+
+    <Button
+        android:id="@+id/buttonSetTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="setTimer"
+        android:text="set timer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.132"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.84" />
+
+    <Button
+        android:id="@+id/button18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="enableTimer"
+        android:text="Enable timer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.903"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.84" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

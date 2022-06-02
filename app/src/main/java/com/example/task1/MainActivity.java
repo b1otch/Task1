@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +17,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.gridlayout.widget.GridLayout;
 
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     DecimalFormat decimalFormat;
     boolean isDarkMode;
+    CountDownTimer countDownTimer;
+    TextView textViewTimer;
     int livesCount = 3, score = 0, highscore;
 
     public void createPuzzle() {
@@ -109,16 +114,22 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         isDarkMode = intent.getBooleanExtra("isDarkMode", false);
+        boolean isTimerMode = intent.getBooleanExtra("isTimerMode", false);
+        int timer = intent.getIntExtra("timerLength", 10) * 1000;
+
+        ProgressBar progressBar = findViewById(R.id.progressBar);
+        progressBar.setMax(timer);
+        progressBar.setProgress(timer);
+        progressBar.setVisibility(View.INVISIBLE);
 
         sharedPreferences = this.getSharedPreferences("com.example.task1", MODE_PRIVATE);
 
-
-        if (isDarkMode) {
+        /*if (isDarkMode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         }
         else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
+        }*/
 
         decimalFormat = new DecimalFormat("#.00");
 
@@ -128,6 +139,23 @@ public class MainActivity extends AppCompatActivity {
         gridLayout3 = (GridLayout) findViewById(R.id.gridLayout3);
         gridLayout4 = (GridLayout) findViewById(R.id.gridLayout4);
         gridLayout1 = (GridLayout) findViewById(R.id.gridLayout1);
+        textViewTimer = findViewById(R.id.textViewTimer);
+
+        if (isTimerMode) {
+            progressBar.setVisibility(View.VISIBLE);
+            countDownTimer = new CountDownTimer(timer, 1000) {
+                @Override
+                public void onTick(long l) {
+                    textViewTimer.setText(String.valueOf(l / 1000));
+                    progressBar.setProgress((int) l);
+                }
+
+                @Override
+                public void onFinish() {
+                    endGame();
+                }
+            }.start();
+        }
 
         createPuzzle();
     }
@@ -267,12 +295,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "You have lost a life " + String.valueOf(livesCount) + " lives remaining", Toast.LENGTH_SHORT).show();
             }
             if (livesCount == 0){
-                TextView textView = findViewById(R.id.textView7);
-                textView.setVisibility(View.VISIBLE);
-                highscore = sharedPreferences.getInt("highscore", 0);
-                if (highscore < score) {
-                    sharedPreferences.edit().putInt("highscore", score).apply();
-                }
+                endGame();
             }
             else {
                 createPuzzle();
@@ -288,5 +311,16 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("isDarkMode", isDarkMode);
 
         startActivity(intent);
+    }
+
+    public void endGame(){
+        TextView textView = findViewById(R.id.textView7);
+        textView.setVisibility(View.VISIBLE);
+        highscore = sharedPreferences.getInt("highscore", 0);
+        if (highscore < score) {
+            sharedPreferences.edit().putInt("highscore", score).apply();
+        }
+        Vibrator vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(500);
     }
 }
