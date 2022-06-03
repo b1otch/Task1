@@ -17,7 +17,6 @@ import android.widget.TextView;
 public class HomePage extends AppCompatActivity {
 
     boolean isDarkMode;
-    Button buttonDarkMode;
     SharedPreferences sharedPreferences;
     int highScore;
     boolean isTimerMode;
@@ -32,31 +31,42 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        Button darkMode = findViewById(R.id.buttonDarkMode);
+
         TextView textHighScore = findViewById(R.id.textViewHighScore);
-        buttonDarkMode = findViewById(R.id.buttonDarkMode);
         setTimer = findViewById(R.id.buttonSetTimer);
         Intent intent = getIntent();
-        highScore = intent.getIntExtra("highscore", 0);
+        highScore = sharedPreferences.getInt("highscore", 0);
         textHighScore.setText(String.valueOf(highScore));
 
         Log.i("highscore", String.valueOf(highScore));
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
         isDarkMode = sharedPreferences.getBoolean("isDarkMode", false);
+        if (isDarkMode) {
+            darkMode.setText("LIGHT MODE");
+        }
+        else {
+            darkMode.setText("DARK MODE");
+        }
     }
 
     public void clickDarkMode(View view) {
+        Button isDarkModeButton = (Button) view;
+        Log.i("isDarkMode", String.valueOf(isDarkMode));
+
         if (isDarkMode) {
             isDarkMode = false;
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            buttonDarkMode.setText("Dark mode");
+            isDarkModeButton.setText("Dark mode");
+            recreate();
         }
         else{
             isDarkMode = true;
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            buttonDarkMode.setText("Light mode");
+            isDarkModeButton.setText("Light mode");
+            recreate();
         }
+        sharedPreferences.edit().putBoolean("isDarkMode", isDarkMode).apply();
     }
 
     public void toGame (View view) {

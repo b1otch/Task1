@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 
@@ -56,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 10; i <= 19; i++) {
             isClicked.put(i, false);
             int rand = new Random().nextInt(100) + 1;
+            while (values.contains(rand)){
+                rand = new Random().nextInt(100) + 1;
+            }
             values.add(rand);
         }
         Log.i("values", String.valueOf(values));
@@ -109,13 +111,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
         Intent intent = getIntent();
         isDarkMode = intent.getBooleanExtra("isDarkMode", false);
         boolean isTimerMode = intent.getBooleanExtra("isTimerMode", false);
         int timer = intent.getIntExtra("timerLength", 10) * 1000;
+
+        /*if (isDarkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }*/
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         ProgressBar progressBar = findViewById(R.id.progressBar);
         progressBar.setMax(timer);
@@ -124,12 +133,8 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferences = this.getSharedPreferences("com.example.task1", MODE_PRIVATE);
 
-        /*if (isDarkMode) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
-        else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }*/
+        int temp = sharedPreferences.getInt("random numbe", 0);
+        Log.i("sharedPref", String.valueOf(temp));
 
         decimalFormat = new DecimalFormat("#.00");
 
@@ -246,8 +251,8 @@ public class MainActivity extends AppCompatActivity {
                 Button child3 = (Button) gridLayout3.getChildAt(i);
                 TextView child5 = (TextView) gridLayout5.getChildAt(i);
 
-                Double a = Double.parseDouble(String.valueOf(child1.getText()));
-                Double b = Double.parseDouble(String.valueOf(child3.getText()));
+                Double a = Double.parseDouble(decimalFormat.format(Double.valueOf((String) child1.getText())));
+                Double b = Double.parseDouble(decimalFormat.format(Double.valueOf((String) child3.getText())));
                 String operation = String.valueOf(child2.getText());
                 Double ans = Double.parseDouble(String.valueOf(child5.getText()));
 
@@ -275,9 +280,9 @@ public class MainActivity extends AppCompatActivity {
                 if (operation == "/") {
                     //String tempAns = String.valueOf(decimalFormat.format(a/b));
                     //String tempFinalAns = String.valueOf(decimalFormat.format(ans));
-                    double formattedAns = a/b;
+                    Double formattedAns = Double.parseDouble(decimalFormat.format(a/b));
 
-                    if ((double) ans != (double) formattedAns) {
+                    if (Double.compare(formattedAns, ans) != 0) {
                         wrongAnswerCount += 1;
                         Log.i("ans", String.valueOf(decimalFormat.format(a/b)));
                         Log.i("ans", String.valueOf(decimalFormat.format(ans)));
@@ -320,6 +325,7 @@ public class MainActivity extends AppCompatActivity {
         if (highscore < score) {
             sharedPreferences.edit().putInt("highscore", score).apply();
         }
+        Log.i("highscore", String.valueOf(highscore));
         Vibrator vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(500);
     }

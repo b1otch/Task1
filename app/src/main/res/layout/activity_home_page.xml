@@ -41,7 +41,6 @@
         android:layout_height="wrap_content"
         android:background="@color/backgroundColor"
         android:onClick="clickDarkMode"
-        android:text="dark mode"
         android:textSize="20sp"
         android:textColor="@color/textColour"
         app:layout_constraintBottom_toTopOf="@+id/button19"

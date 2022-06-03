@@ -9,18 +9,19 @@
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/gridLayout"
-        android:layout_width="362dp"
-        android:layout_height="149dp"
-        android:layout_marginBottom="49dp"
-        app:layout_constraintBottom_toTopOf="@+id/button16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="183dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="188dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout3">
 
         <Button
             android:id="@+id/button"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:insetLeft="8dp"
             android:insetRight="8dp"
@@ -34,7 +35,7 @@
         <Button
             android:id="@+id/button2"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:insetLeft="8dp"
             android:insetRight="8dp"
@@ -48,7 +49,7 @@
         <Button
             android:id="@+id/button3"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:insetLeft="8dp"
             android:insetRight="8dp"
@@ -62,7 +63,7 @@
         <Button
             android:id="@+id/button4"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:insetLeft="8dp"
             android:insetRight="8dp"
@@ -76,7 +77,7 @@
         <Button
             android:id="@+id/button5"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:insetLeft="8dp"
             android:insetRight="8dp"
@@ -90,7 +91,7 @@
         <Button
             android:id="@+id/button6"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:insetLeft="8dp"
             android:insetRight="8dp"
@@ -104,7 +105,7 @@
         <Button
             android:id="@+id/button7"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:insetLeft="8dp"
             android:insetRight="8dp"
@@ -118,7 +119,7 @@
         <Button
             android:id="@+id/button8"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:insetLeft="8dp"
             android:insetRight="8dp"
@@ -132,7 +133,7 @@
         <Button
             android:id="@+id/button9"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:insetLeft="8dp"
             android:insetRight="8dp"
@@ -146,7 +147,7 @@
         <Button
             android:id="@+id/button10"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:insetLeft="8dp"
             android:insetRight="8dp"
@@ -160,12 +161,11 @@
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/gridLayout1"
-        android:layout_width="72dp"
-        android:layout_height="360dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="66dp"
-        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="51dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="60dp"
         app:layout_constraintEnd_toStartOf="@+id/gridLayout2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -173,18 +173,18 @@
         <Button
             android:id="@+id/button11"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:clickable="false"
             android:onClick="onAnswerClick"
+            android:textColor="@color/textColour"
             app:layout_column="0"
-            app:layout_row="0"
-            android:textColor="@color/textColour" />
+            app:layout_row="0" />
 
         <Button
             android:id="@+id/button12"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:clickable="false"
             android:onClick="onAnswerClick"
@@ -195,7 +195,7 @@
         <Button
             android:id="@+id/button13"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:clickable="false"
             android:onClick="onAnswerClick"
@@ -206,7 +206,7 @@
         <Button
             android:id="@+id/button14"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:clickable="false"
             android:onClick="onAnswerClick"
@@ -217,7 +217,7 @@
         <Button
             android:id="@+id/button15"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:clickable="false"
             android:onClick="onAnswerClick"
@@ -229,19 +229,17 @@
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/gridLayout2"
-        android:layout_width="72dp"
-        android:layout_height="360dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="66dp"
-        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="74dp"
         app:layout_constraintEnd_toStartOf="@+id/gridLayout3"
-        app:layout_constraintStart_toEndOf="@+id/gridLayout1"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/textColour"
@@ -250,7 +248,7 @@
         <TextView
             android:id="@+id/textView8"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/textColour"
@@ -261,7 +259,7 @@
         <TextView
             android:id="@+id/textView9"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/textColour"
@@ -272,7 +270,7 @@
         <TextView
             android:id="@+id/textView10"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/textColour"
@@ -283,7 +281,7 @@
         <TextView
             android:id="@+id/textView11"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/textColour"
@@ -295,19 +293,17 @@
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/gridLayout3"
-        android:layout_width="72dp"
-        android:layout_height="360dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="66dp"
-        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="66dp"
         app:layout_constraintEnd_toStartOf="@+id/gridLayout4"
-        app:layout_constraintStart_toEndOf="@+id/gridLayout2"
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/button21"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:clickable="false"
             android:onClick="onAnswerClick"
@@ -318,7 +314,7 @@
         <Button
             android:id="@+id/button22"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:clickable="false"
             android:onClick="onAnswerClick"
@@ -329,7 +325,7 @@
         <Button
             android:id="@+id/button23"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:clickable="false"
             android:onClick="onAnswerClick"
@@ -340,7 +336,7 @@
         <Button
             android:id="@+id/button24"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:clickable="false"
             android:onClick="onAnswerClick"
@@ -351,7 +347,7 @@
         <Button
             android:id="@+id/button25"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:background="@color/backgroundColor"
             android:clickable="false"
             android:onClick="onAnswerClick"
@@ -362,20 +358,17 @@
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/gridLayout4"
-        android:layout_width="72dp"
-        android:layout_height="360dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="66dp"
-        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="50dp"
         app:layout_constraintEnd_toStartOf="@+id/gridLayout5"
-        app:layout_constraintStart_toEndOf="@+id/gridLayout3"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:text="="
             android:textAlignment="center"
@@ -387,7 +380,7 @@
         <TextView
             android:id="@+id/textView2"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:text="="
             android:textAlignment="center"
@@ -399,7 +392,7 @@
         <TextView
             android:id="@+id/textView3"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:text="="
             android:textAlignment="center"
@@ -411,7 +404,7 @@
         <TextView
             android:id="@+id/textView4"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:text="="
             android:textAlignment="center"
@@ -423,7 +416,7 @@
         <TextView
             android:id="@+id/textView5"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:text="="
             android:textAlignment="center"
@@ -435,20 +428,17 @@
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/gridLayout5"
-        android:layout_width="72dp"
-        android:layout_height="360dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="66dp"
-        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="70dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/gridLayout4"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView12"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/textColour"
@@ -457,7 +447,7 @@
         <TextView
             android:id="@+id/textView13"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/textColour"
@@ -468,7 +458,7 @@
         <TextView
             android:id="@+id/textView14"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/textColour"
@@ -479,7 +469,7 @@
         <TextView
             android:id="@+id/textView15"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/textColour"
@@ -490,7 +480,7 @@
         <TextView
             android:id="@+id/textView16"
             android:layout_width="72dp"
-            android:layout_height="72dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/textColour"
@@ -503,40 +493,34 @@
         android:id="@+id/button16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="81dp"
-        android:layout_marginEnd="116dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginBottom="32dp"
         android:background="#3C4EF3"
         android:onClick="submitAnswer"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonHomepage"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginEnd="172dp"
-        android:layout_marginBottom="35dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="113dp"
         android:text="GAME OVER"
         android:textSize="24sp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toStartOf="@+id/buttonHomepage"
+        app:layout_constraintStart_toEndOf="@+id/button16"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
 
     <Button
         android:id="@+id/buttonHomepage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginBottom="32dp"
         android:onClick="takeToHomepage"
         android:text="homepage"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -561,11 +545,13 @@
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="413dp"
-        android:layout_height="26dp"
-        android:layout_marginBottom="4dp"
+        android:layout_width="733dp"
+        android:layout_height="13dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
